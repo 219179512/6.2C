@@ -62,11 +62,11 @@ pipeline{
                 body: "Integration Test Stage implemented unsuccessfully!"
                 }
             }
+        }
         stage('Deploy to Production'){
             steps{
                 echo "Code deployed to production environment specified by: $PRODUCTION_SERVER"    
-                }
             }
-        }
+        }  
     }
 }
