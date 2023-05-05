@@ -45,4 +45,9 @@ pipeline{
             }
         }
     }
+    post {
+        always {
+            emailext attachLog: true, body: 'This is a notification that has been sent upon the successful completion of the test stage.', subject: 'Task 6.2C Pipeline Test Notification', to: 'vtruglio@deakin.edu.au'
+        }
+    }
 }
