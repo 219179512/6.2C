@@ -28,26 +28,45 @@ pipeline{
             steps{
                 echo "utilise: $SECURITY_SCAN_TOOL to perform security scan and identify vulnerabilities"    
             }
+        post{
+            success{
+                mail to: "vtruglio@deakin.edu.au",
+                subject: "Security Scan Status",
+                body: "Security Scan Stage implemented successfully!"
+                }
+            failure{
+                mail to: "vtruglio@deakin.edu.au",
+                subject: "Security Scan Status",
+                body: "Security Scan Stage implemented unsuccessfully!"
+                }
+            }
         }
         stage('Deploy to Staging'){
             steps{
                 echo "deploy the application to a testing environment specified by: $STAGING_SERVER"    
-            }
+                }
         }
         stage('Integration Tests on Staging'){
             steps{
                 echo "run integration tests on a staging environment specified by: $STAGING_SERVER"    
             }
-        }
+        post{
+            success{
+                mail to: "vtruglio@deakin.edu.au",
+                subject: " Integration Test Status",
+                body: "Integration Test Stage implemented successfully!"
+                }
+            failure{
+                mail to: "vtruglio@deakin.edu.au",
+                subject: "Integration Test Status",
+                body: "Integration Test Stage implemented unsuccessfully!"
+                }
+            }
         stage('Deploy to Production'){
             steps{
                 echo "Code deployed to production environment specified by: $PRODUCTION_SERVER"    
+                }
             }
-        }
-    }
-    post {
-        always {
-            emailext attachLog: true, body: 'This is a notification that has been sent upon the successful completion of the test stage.', subject: 'Task 6.2C Pipeline Test Notification', to: 'vtruglio@deakin.edu.au'
         }
     }
 }
