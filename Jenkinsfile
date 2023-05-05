@@ -30,12 +30,12 @@ pipeline{
             }
         post{
             success{
-                mail to: "vtruglio@deakin.edu.au",
+                mail to: "vittrutruggs@gmail.com",
                 subject: "Security Scan Status",
-                body: "Security Scan Stage implemented successfully!"
+                body: "Security Scan Stage implemented successfully!",
                 }
             failure{
-                mail to: "vtruglio@deakin.edu.au",
+                mail to: "vittrutruggs@gmail.com",
                 subject: "Security Scan Status",
                 body: "Security Scan Stage implemented unsuccessfully!"
                 }
@@ -52,12 +52,12 @@ pipeline{
             }
         post{
             success{
-                mail to: "vtruglio@deakin.edu.au",
+                mail to: "vittrutruggs@gmail.com",
                 subject: " Integration Test Status",
                 body: "Integration Test Stage implemented successfully!"
                 }
             failure{
-                mail to: "vtruglio@deakin.edu.au",
+                mail to: "vittrutruggs@gmail.com",
                 subject: "Integration Test Status",
                 body: "Integration Test Stage implemented unsuccessfully!"
                 }
