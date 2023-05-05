@@ -32,7 +32,7 @@ pipeline{
             success{
                 mail to: "vittrutruggs@gmail.com",
                 subject: "Security Scan Status",
-                body: "Security Scan Stage implemented successfully!",
+                body: "Security Scan Stage implemented successfully!"
                 }
             failure{
                 mail to: "vittrutruggs@gmail.com",
