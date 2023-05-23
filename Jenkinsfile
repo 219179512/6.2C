@@ -27,10 +27,18 @@ pipeline{
         stage('Security Scan'){
             steps{
                 echo "utilise: $SECURITY_SCAN_TOOL to perform security scan and identify vulnerabilities"
+                ${BUILD_LOG, maxLines=9999, escapeHtml=true}
             }
         post{
-           always {
-                emailext attachLog:true, body: 'The security scan status is reported with the following logs', subject: 'Security Scan Status', to:'vittrutruggs@gmail.com'
+            success{
+                mail to: "vittrutruggs@gmail.com",
+                subject: "Security Scan Status",
+                body: "Security Scan Stage implemented successfully!" 
+                }
+            failure{
+                mail to: "vittrutruggs@gmail.com",
+                subject: "Security Scan Status",
+                body: "Security Scan Stage implemented unsuccessfully!" 
                 }
             }
         }
@@ -42,10 +50,18 @@ pipeline{
         stage('Integration Tests on Staging'){
             steps{
                 echo "run integration tests on a staging environment specified by: $STAGING_SERVER"
+                ${BUILD_LOG, maxLines=9999, escapeHtml=true}
             }
         post{
             success{
-                emailext attachLog:true, body: 'The integration tests status is reported with the following logs', subject: 'Integration Tests Status', to:'vittrutruggs@gmail.com' 
+                mail to: "vittrutruggs@gmail.com",
+                subject: " Integration Test Status",
+                body: "Integration Test Stage implemented successfully!" 
+                }
+            failure{
+                mail to: "vittrutruggs@gmail.com",
+                subject: "Integration Test Status",
+                body: "Integration Test Stage implemented unsuccessfully!" 
                 }
             }
         }
