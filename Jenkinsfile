@@ -7,6 +7,7 @@ pipeline{
         SECURITY_SCAN_TOOL = "SpectralOps"
         STAGING_SERVER = "AWS EC2"
         PRODUCTION_SERVER = "AWS EC2"
+        BUILD_LOG = ""
     }
     stages{
         stage('Build'){
@@ -27,18 +28,13 @@ pipeline{
         stage('Security Scan'){
             steps{
                 echo "utilise: $SECURITY_SCAN_TOOL to perform security scan and identify vulnerabilities"
-                ${BUILD_LOG, maxLines=9999, escapeHtml=true}
             }
         post{
             success{
-                mail to: "vittrutruggs@gmail.com",
-                subject: "Security Scan Status",
-                body: "Security Scan Stage implemented successfully!" 
+                emailext attachLog: true, body: 'Security Scan Stage implemented successfully!', subject: 'Security Scan Status', to: 'vittrutruggs@gmail.com'
                 }
             failure{
-                mail to: "vittrutruggs@gmail.com",
-                subject: "Security Scan Status",
-                body: "Security Scan Stage implemented unsuccessfully!" 
+                emailext attachLog: true, body: 'Security Scan Stage implemented unsuccessfully!', subject: 'Security Scan Status', to: 'vittrutruggs@gmail.com'
                 }
             }
         }
@@ -50,18 +46,13 @@ pipeline{
         stage('Integration Tests on Staging'){
             steps{
                 echo "run integration tests on a staging environment specified by: $STAGING_SERVER"
-                ${BUILD_LOG, maxLines=9999, escapeHtml=true}
             }
         post{
             success{
-                mail to: "vittrutruggs@gmail.com",
-                subject: " Integration Test Status",
-                body: "Integration Test Stage implemented successfully!" 
+                emailext attachLog: true, body: 'Integration Test Stage implemented successfully!', subject: 'Integration Test Status', to: 'vittrutruggs@gmail.com'
                 }
             failure{
-                mail to: "vittrutruggs@gmail.com",
-                subject: "Integration Test Status",
-                body: "Integration Test Stage implemented unsuccessfully!" 
+                emailext attachLog: true, body: 'Integration Test Stage implemented unsuccessfully!', subject: 'Integration Test Status', to: 'vittrutruggs@gmail.com'
                 }
             }
         }
