@@ -33,13 +33,13 @@ pipeline{
                 mail to: "vittrutruggs@gmail.com",
                 subject: "Security Scan Status",
                 body: "Security Scan Stage implemented successfully!" 
-                ${BUILD_LOG, maxLines=1000, escapeHtml=false}
+                $BUILD_LOG, maxLines=1000, escapeHtml=false
                 }
             failure{
                 mail to: "vittrutruggs@gmail.com",
                 subject: "Security Scan Status",
                 body: "Security Scan Stage implemented unsuccessfully!" 
-                ${BUILD_LOG, maxLines=1000, escapeHtml=false}
+                $BUILD_LOG, maxLines=1000, escapeHtml=false
                 }
             }
         }
@@ -57,13 +57,13 @@ pipeline{
                 mail to: "vittrutruggs@gmail.com",
                 subject: " Integration Test Status",
                 body: "Integration Test Stage implemented successfully!"      
-                ${BUILD_LOG, maxLines=1000, escapeHtml=false}           
+                $BUILD_LOG, maxLines=1000, escapeHtml=false           
                 }
             failure{
                 mail to: "vittrutruggs@gmail.com",
                 subject: "Integration Test Status",
                 body: "Integration Test Stage implemented unsuccessfully!"  
-                ${BUILD_LOG, maxLines=1000, escapeHtml=false}            
+                $BUILD_LOG, maxLines=1000, escapeHtml=false            
                 }
             }
         }
