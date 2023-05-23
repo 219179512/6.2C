@@ -30,22 +30,16 @@ pipeline{
             }
         post{
             success{
-                    emailext attachLog: true,
-                    body: "Security Scan Stage implemented successfully!" +
-                            currentBuild.rawBuild.getLog(15).join("<br>"),
-
-                    mimeType: 'text/html',
-                    subject: "Security Scan Status",
-                    to: '"vittrutruggs@gmail.com"'
+                emailext attachLog: true,
+                mail to: "vittrutruggs@gmail.com",
+                subject: "Security Scan Successful",
+                body: ${BUILD_LOG, maxLines=1000, escapeHtml=false}
                 }
             failure{
-                    emailext attachLog: true,
-                    body: "Security Scan Stage implemented unsuccessfully!" +
-                            currentBuild.rawBuild.getLog(15).join("<br>"),
-
-                    mimeType: 'text/html',
-                    subject: "Security Scan Status",
-                    to: '"vittrutruggs@gmail.com"'
+                emailext attachLog: true,
+                mail to: "vittrutruggs@gmail.com",
+                subject: "Security Scan Unsuccessful",
+                body: ${BUILD_LOG, maxLines=1000, escapeHtml=false}
                 }
             }
         }
@@ -60,20 +54,16 @@ pipeline{
             }
         post{
             success{
-                emailext(
-                    subject: "Security Scan Status",
-                    to: "vittrutruggs@gmail.com",
-                    body: """<p>Security Scan Stage implemented successfully!</p>
-                    <p>Console output (last 250 lines):<hr><pre>${BUILD_LOG}</pre></p>"""                
-                )
+                emailext attachLog: true,
+                mail to: "vittrutruggs@gmail.com",
+                subject: "Integration Test Successful",
+                body: ${BUILD_LOG, maxLines=1000, escapeHtml=false}
                 }
             failure{
-                emailext(
-                    subject: "Security Scan Status",
-                    to: "vittrutruggs@gmail.com",
-                    body: """<p>Security Scan Stage implemented successfully!</p>
-                    <p>Console output (last 250 lines):<hr><pre>${BUILD_LOG}</pre></p>"""                
-                )
+                emailext attachLog: true,
+                mail to: "vittrutruggs@gmail.com",
+                subject: "Integration Test Unsuccessful",
+                body: ${BUILD_LOG, maxLines=1000, escapeHtml=false}
                 }
             }
         }
