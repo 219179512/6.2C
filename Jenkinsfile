@@ -30,7 +30,7 @@ pipeline{
             }
         post{
            always {
-                emailext attachLog: , body: 'The security scan status is reported with the following logs', subject: 'Security Scan Status', to:'vittrutruggs@gmail.com'
+                emailext attachLog:true, body: 'The security scan status is reported with the following logs', subject: 'Security Scan Status', to:'vittrutruggs@gmail.com'
                 }
             }
         }
@@ -45,7 +45,7 @@ pipeline{
             }
         post{
             success{
-                emailext attachLog: , body: 'The integration tests status is reported with the following logs', subject: 'Integration Tests Status', to:'vittrutruggs@gmail.com' 
+                emailext attachLog:true, body: 'The integration tests status is reported with the following logs', subject: 'Integration Tests Status', to:'vittrutruggs@gmail.com' 
                 }
             }
         }
