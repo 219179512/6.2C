@@ -30,20 +30,22 @@ pipeline{
             }
         post{
             success{
-                emailext(
+                    emailext attachLog: true,
+                    body: "Security Scan Stage implemented successfully!" +
+                            currentBuild.rawBuild.getLog(15).join("<br>"),
+
+                    mimeType: 'text/html',
                     subject: "Security Scan Status",
-                    to: "vittrutruggs@gmail.com",
-                    body: """<p>Security Scan Stage implemented successfully!</p>
-                    <p>Console output (last 250 lines):<hr><pre>${BUILD_LOG}</pre></p>"""
-                )
+                    to: '"vittrutruggs@gmail.com"'
                 }
             failure{
-                emailext(
+                    emailext attachLog: true,
+                    body: "Security Scan Stage implemented unsuccessfully!" +
+                            currentBuild.rawBuild.getLog(15).join("<br>"),
+
+                    mimeType: 'text/html',
                     subject: "Security Scan Status",
-                    to: "vittrutruggs@gmail.com",
-                    body: """<p>Security Scan Stage implemented unsuccessfully!</p>
-                    <p>Console output (last 250 lines):<hr><pre>${BUILD_LOG}</pre></p>"""                
-                )
+                    to: '"vittrutruggs@gmail.com"'
                 }
             }
         }
