@@ -33,12 +33,12 @@ pipeline{
             success{
                 mail to: "vittrutruggs@gmail.com",
                 subject: "Security Scan Successful",
-                body: ${BUILD_LOG, maxLines=1000, escapeHtml=false}
+                body: "${BUILD_LOG, maxLines=1000, escapeHtml=false}"
                 }
             failure{
                 mail to: "vittrutruggs@gmail.com",
                 subject: "Security Scan Unsuccessful",
-                body: ${BUILD_LOG, maxLines=1000, escapeHtml=false}
+                body: "${BUILD_LOG, maxLines=1000, escapeHtml=false}"
                 }
             }
         }
