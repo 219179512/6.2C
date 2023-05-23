@@ -26,15 +26,20 @@ pipeline{
         }
         stage('Security Scan'){
             steps{
-                echo "utilise: $SECURITY_SCAN_TOOL to perform security scan and identify vulnerabilities" 
-                emailext attachLog: true, body: 'Security Scan Stage implemented successfully!', subject: 'Security Scan Status', to: 'vittrutruggs@gmail.com'   
+                echo "utilise: $SECURITY_SCAN_TOOL to perform security scan and identify vulnerabilities"    
             }
         post{
             success{
-                emailext attachLog: true, body: 'Security Scan Stage implemented successfully!', subject: 'Security Scan Status', to: 'vittrutruggs@gmail.com'
+                mail to: "vittrutruggs@gmail.com",
+                subject: "Security Scan Status",
+                body: "Security Scan Stage implemented successfully!" 
+                emailext attachLog: true
                 }
             failure{
-                emailext attachLog: true, body: 'Security Scan Stage implemented unsuccessfully!', subject: 'Security Scan Status', to: 'vittrutruggs@gmail.com'
+                mail to: "vittrutruggs@gmail.com",
+                subject: "Security Scan Status",
+                body: "Security Scan Stage implemented unsuccessfully!" 
+                emailext attachLog: true
                 }
             }
         }
@@ -45,15 +50,20 @@ pipeline{
         }
         stage('Integration Tests on Staging'){
             steps{
-                echo "run integration tests on a staging environment specified by: $STAGING_SERVER"
-                emailext attachLog: true, body: 'Security Scan Stage implemented successfully!', subject: 'Security Scan Status', to: 'vittrutruggs@gmail.com'   
+                echo "run integration tests on a staging environment specified by: $STAGING_SERVER"    
             }
         post{
             success{
-                emailext attachLog: true, body: 'Integration Test Stage implemented successfully!', subject: 'Integration Test Status', to: 'vittrutruggs@gmail.com'
+                mail to: "vittrutruggs@gmail.com",
+                subject: " Integration Test Status",
+                body: "Integration Test Stage implemented successfully!" 
+                emailext attachLog: true
                 }
             failure{
-                emailext attachLog: true, body: 'Integration Test Stage implemented unsuccessfully!', subject: 'Integration Test Status', to: 'vittrutruggs@gmail.com'
+                mail to: "vittrutruggs@gmail.com",
+                subject: "Integration Test Status",
+                body: "Integration Test Stage implemented unsuccessfully!" 
+                emailext attachLog: true
                 }
             }
         }
