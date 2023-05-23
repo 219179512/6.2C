@@ -7,7 +7,7 @@ pipeline{
         SECURITY_SCAN_TOOL = "SpectralOps"
         STAGING_SERVER = "AWS EC2"
         PRODUCTION_SERVER = "AWS EC2"
-        BUILD_LOG = ""
+        BUILD_LOG = "C:\Users\theex\.jenkins\jobs\6.2C\builds\34\log"
     }
     stages{
         stage('Build'){
@@ -31,10 +31,16 @@ pipeline{
             }
         post{
             success{
-                emailext attachLog: true, body: 'Security Scan Stage implemented successfully!', subject: 'Security Scan Status', to: 'vittrutruggs@gmail.com'
+                mail to: "vittrutruggs@gmail.com",
+                subject: "Security Scan Status",
+                body: "Security Scan Stage implemented successfully!" 
+                ${BUILD_LOG, maxLines=1000, escapeHtml=false}
                 }
             failure{
-                emailext attachLog: true, body: 'Security Scan Stage implemented unsuccessfully!', subject: 'Security Scan Status', to: 'vittrutruggs@gmail.com'
+                mail to: "vittrutruggs@gmail.com",
+                subject: "Security Scan Status",
+                body: "Security Scan Stage implemented unsuccessfully!" 
+                ${BUILD_LOG, maxLines=1000, escapeHtml=false}
                 }
             }
         }
@@ -49,10 +55,16 @@ pipeline{
             }
         post{
             success{
-                emailext attachLog: true, body: 'Integration Test Stage implemented successfully!', subject: 'Integration Test Status', to: 'vittrutruggs@gmail.com'
+                mail to: "vittrutruggs@gmail.com",
+                subject: " Integration Test Status",
+                body: "Integration Test Stage implemented successfully!"      
+                ${BUILD_LOG, maxLines=1000, escapeHtml=false}           
                 }
             failure{
-                emailext attachLog: true, body: 'Integration Test Stage implemented unsuccessfully!', subject: 'Integration Test Status', to: 'vittrutruggs@gmail.com'
+                mail to: "vittrutruggs@gmail.com",
+                subject: "Integration Test Status",
+                body: "Integration Test Stage implemented unsuccessfully!"  
+                ${BUILD_LOG, maxLines=1000, escapeHtml=false}            
                 }
             }
         }
