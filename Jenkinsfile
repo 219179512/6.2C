@@ -30,16 +30,10 @@ pipeline{
             }
         post{
             success{
-                mail to: "vittrutruggs@gmail.com",
-                subject: "Security Scan Status",
-                body: "Security Scan Stage implemented successfully!" 
-                body: ${BUILD_LOG, maxLines=1000, escapeHtml=false}
+                emailext attachLog: true, body: 'Security Scan Stage implemented successfully!', subject: 'Security Scan Status', to: 'vittrutruggs@gmail.com'
                 }
             failure{
-                mail to: "vittrutruggs@gmail.com",
-                subject: "Security Scan Status",
-                body: "Security Scan Stage implemented unsuccessfully!" 
-                body: ${BUILD_LOG, maxLines=1000, escapeHtml=false}
+                emailext attachLog: true, body: 'Security Scan Stage implemented unsuccessfully!', subject: 'Security Scan Status', to: 'vittrutruggs@gmail.com'
                 }
             }
         }
@@ -54,16 +48,10 @@ pipeline{
             }
         post{
             success{
-                mail to: "vittrutruggs@gmail.com",
-                subject: " Integration Test Status",
-                body: "Integration Test Stage implemented successfully!" 
-                body: ${BUILD_LOG, maxLines=1000, escapeHtml=false}
+                emailext attachLog: true, body: 'Integration Test Stage implemented successfully!', subject: 'Integration Test Status', to: 'vittrutruggs@gmail.com'
                 }
             failure{
-                mail to: "vittrutruggs@gmail.com",
-                subject: "Integration Test Status",
-                body: "Integration Test Stage implemented unsuccessfully!" 
-                body: ${BUILD_LOG, maxLines=1000, escapeHtml=false}
+                emailext attachLog: true, body: 'Integration Test Stage implemented unsuccessfully!', subject: 'Integration Test Status', to: 'vittrutruggs@gmail.com'
                 }
             }
         }
