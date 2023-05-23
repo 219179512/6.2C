@@ -30,16 +30,10 @@ pipeline{
             }
         post{
             success{
-                emailext attachLog: true,
-                mail to: "vittrutruggs@gmail.com",
-                subject: "Security Scan Successful",
-                body: ${BUILD_LOG, maxLines=1000, escapeHtml=false}
+                emailext attachLog: true, body: ${BUILD_LOG, maxLines=1000, escapeHtml=false}, subject: 'Security Scan Successful', to: 'vittrutruggs@gmail.com',
                 }
             failure{
-                emailext attachLog: true,
-                mail to: "vittrutruggs@gmail.com",
-                subject: "Security Scan Unsuccessful",
-                body: ${BUILD_LOG, maxLines=1000, escapeHtml=false}
+                emailext attachLog: true, body: ${BUILD_LOG, maxLines=1000, escapeHtml=false}, subject: 'Security Scan Unsuccessful', to: 'vittrutruggs@gmail.com',
                 }
             }
         }
