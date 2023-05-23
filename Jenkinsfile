@@ -7,7 +7,6 @@ pipeline{
         SECURITY_SCAN_TOOL = "SpectralOps"
         STAGING_SERVER = "AWS EC2"
         PRODUCTION_SERVER = "AWS EC2"
-        BUILD_LOG = "C:Users\theex\.jenkins\jobs\6.2C\builds\34\log"
     }
     stages{
         stage('Build'){
