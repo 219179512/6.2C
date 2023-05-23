@@ -7,7 +7,6 @@ pipeline{
         SECURITY_SCAN_TOOL = "SpectralOps"
         STAGING_SERVER = "AWS EC2"
         PRODUCTION_SERVER = "AWS EC2"
-        BUILD_LOG = "C:/Users/theex/.jenkins/jobs/6.2C/builds/40/log"
     }
     stages{
         stage('Build'){
@@ -31,14 +30,20 @@ pipeline{
             }
         post{
             success{
-                mail to: "vittrutruggs@gmail.com",
-                subject: "Security Scan Successful",
-                body: ${BUILD_LOG, maxLines=1000, escapeHtml=false}
+                emailext(
+                    subject: "Security Scan Status",
+                    to: "vittrutruggs@gmail.com",
+                    body: """<p>Security Scan Stage implemented successfully!</p>
+                    <p>Console output (last 250 lines):<hr><pre>${BUILD_LOG}</pre></p>"""
+                )
                 }
             failure{
-                mail to: "vittrutruggs@gmail.com",
-                subject: "Security Scan Unsuccessful",
-                body: ${BUILD_LOG, maxLines=1000, escapeHtml=false}
+                emailext(
+                    subject: "Security Scan Status",
+                    to: "vittrutruggs@gmail.com",
+                    body: """<p>Security Scan Stage implemented unsuccessfully!</p>
+                    <p>Console output (last 250 lines):<hr><pre>${BUILD_LOG}</pre></p>"""                
+                )
                 }
             }
         }
@@ -53,14 +58,20 @@ pipeline{
             }
         post{
             success{
-                mail to: "vittrutruggs@gmail.com",
-                subject: "Integration Test Successful",
-                body: ${BUILD_LOG, maxLines=1000, escapeHtml=false}
+                emailext(
+                    subject: "Security Scan Status",
+                    to: "vittrutruggs@gmail.com",
+                    body: """<p>Security Scan Stage implemented successfully!</p>
+                    <p>Console output (last 250 lines):<hr><pre>${BUILD_LOG}</pre></p>"""                
+                )
                 }
             failure{
-                mail to: "vittrutruggs@gmail.com",
-                subject: "Integration Test Unsuccessful",
-                body: ${BUILD_LOG, maxLines=1000, escapeHtml=false}
+                emailext(
+                    subject: "Security Scan Status",
+                    to: "vittrutruggs@gmail.com",
+                    body: """<p>Security Scan Stage implemented successfully!</p>
+                    <p>Console output (last 250 lines):<hr><pre>${BUILD_LOG}</pre></p>"""                
+                )
                 }
             }
         }
