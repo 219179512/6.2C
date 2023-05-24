@@ -30,10 +30,10 @@ pipeline{
             }
         post{
             success{
-                emailext attachLog: true, body: 'Security Scan Stage implemented successfully!', subject: 'Security Scan Status', to: 'vittrutruggs@gmail.com',
+                emailext attachLog: true, body: 'Security Scan Stage implemented successfully!', subject: 'Security Scan Status', to: 'vittrutruggs@gmail.com'
                 }
             failure{
-                emailext attachLog: true, body: 'Security Scan Stage implemented unsuccessfully!', subject: 'Security Scan Status', to: 'vittrutruggs@gmail.com',
+                emailext attachLog: true, body: 'Security Scan Stage implemented unsuccessfully!', subject: 'Security Scan Status', to: 'vittrutruggs@gmail.com'
                 }
             }
         }
@@ -48,10 +48,10 @@ pipeline{
             }
         post{
             success{
-                emailext attachLog: true, body: 'Integration Test Stage implemented successfully!', subject: 'Integration Test Status', to: 'vittrutruggs@gmail.com',
+                emailext attachLog: true, body: 'Integration Test Stage implemented successfully!', subject: 'Integration Test Status', to: 'vittrutruggs@gmail.com'
                 }
             failure{
-                emailext attachLog: true, body: 'Integration Test Stage implemented unsuccessfully!', subject: 'Integration Test Status', to: 'vittrutruggs@gmail.com',
+                emailext attachLog: true, body: 'Integration Test Stage implemented unsuccessfully!', subject: 'Integration Test Status', to: 'vittrutruggs@gmail.com'
                 }
             }
         }
